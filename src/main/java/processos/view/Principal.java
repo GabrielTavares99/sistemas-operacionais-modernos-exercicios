@@ -9,7 +9,13 @@ public class Principal {
 
         System.out.println(procController.os());
 
-        procController.propriedades();
+//        procController.propriedades();
 
+        String caminhoProcesso = "vlc";
+//        String caminhoProcesso = "C:\\windows\\notepad.exe";
+        procController.chamaProcesso(caminhoProcesso);
+//        procController.leProcesso("traceroute www.google.com");
+
+        procController.mataProcesso("vlc");
     }
 }
