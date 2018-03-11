@@ -1,6 +1,4 @@
-package processos.view;
-
-import processos.controller.ProcController;
+package processos;
 
 public class Principal {
     public static void main(String[] args) {
@@ -11,11 +9,11 @@ public class Principal {
 
 //        procController.propriedades();
 
-        String caminhoProcesso = "vlc";
+//        String caminhoProcesso = "vlc";
 //        String caminhoProcesso = "C:\\windows\\notepad.exe";
-        procController.chamaProcesso(caminhoProcesso);
-//        procController.leProcesso("traceroute www.google.com");
+//        procController.chamaProcesso(caminhoProcesso);
+        procController.leProcesso("traceroute www.google.com");
 
-        procController.mataProcesso("vlc");
+//        procController.mataProcesso("vlc");
     }
 }

@@ -1,4 +1,4 @@
-package processos.controller;
+package processos;
 
 import javax.swing.*;
 import java.io.BufferedReader;
@@ -54,7 +54,7 @@ public class ProcController {
         }
     }
 
-    public void leProcesso(String comandoTaskList){
+    public void leProcesso(String comandoTaskList) {
         Process process;
         try {
             process = Runtime.getRuntime().exec(comandoTaskList);
@@ -62,7 +62,7 @@ public class ProcController {
             InputStreamReader leitor = new InputStreamReader(fluxo);
             BufferedReader buffer = new BufferedReader(leitor);
             String linha = buffer.readLine();
-            while (linha != null){
+            while (linha != null) {
                 System.out.println(linha);
                 linha = buffer.readLine();
             }
@@ -71,22 +71,22 @@ public class ProcController {
         }
     }
 
-    public void mataProcesso(String processo){
+    public void mataProcesso(String processo) {
 //            String cmdPid = "TASKKILL /PID ";
 //            String cmdNome = "TASKKILL /IM";
         String cmdPid = "top";
         String cmdNome = "top";
-            int pid = 0;
-            StringBuffer buffer = new StringBuffer();
-            try {
-                pid = Integer.parseInt(processo);
-                buffer.append(cmdPid);
-                buffer.append(pid);
-            }catch (NumberFormatException e){
-                buffer.append(cmdNome);
-                buffer.append(processo);
-            }
-            chamaProcesso(buffer.toString());
+        int pid = 0;
+        StringBuffer buffer = new StringBuffer();
+        try {
+            pid = Integer.parseInt(processo);
+            buffer.append(cmdPid);
+            buffer.append(pid);
+        } catch (NumberFormatException e) {
+            buffer.append(cmdNome);
+            buffer.append(processo);
+        }
+        chamaProcesso(buffer.toString());
     }
 
 }

@@ -1,6 +1,6 @@
-package processos.view;
+package processos.interfaceRede.view;
 
-import processos.controller.RedesController;
+import processos.interfaceRede.controller.RedesController;
 
 import java.util.Scanner;
 import java.util.StringJoiner;
@@ -16,7 +16,7 @@ public class MainRedesController {
 
         int opcao = 0;
 
-        while (opcao != 99){
+        while (opcao != 99) {
             StringJoiner menu = new StringJoiner("\n");
             menu.add("Bem Vindo à Central de Redes:");
             menu.add("1 - Ver adaptadores de rede");

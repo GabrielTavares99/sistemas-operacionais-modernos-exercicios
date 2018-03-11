@@ -1,4 +1,4 @@
-package processos.controller;
+package processos.interfaceRede.controller;
 
 public class WindowsController implements ISoController {
 

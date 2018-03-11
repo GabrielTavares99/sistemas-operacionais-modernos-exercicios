@@ -1,4 +1,4 @@
-package processos.controller;
+package processos.interfaceRede.controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
