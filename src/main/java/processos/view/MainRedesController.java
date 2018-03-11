@@ -7,7 +7,16 @@ public class MainRedesController {
 
         RedesController redesController = new RedesController();
 
+        String osName = System.getProperty("os.name");
+
         System.out.print("Adaptadores de rede:");
-        System.out.println(redesController.ip(System.getProperty("os.name")));
+        System.out.println(redesController.ip(osName));
+
+        System.out.println();
+
+        System.out.println("Ping médio: ");
+        System.out.println(redesController.ping(osName));
+
+
     }
 }

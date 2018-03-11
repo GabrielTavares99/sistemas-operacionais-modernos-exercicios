@@ -51,4 +51,38 @@ public class RedesController {
         return adaptador.toString();
     }
 
+    public String ping(String osName) {
+        if (!osName.equalsIgnoreCase("Linux"))
+            return null;
+        List<String> linhas = new ArrayList<>();
+        String command = "ping -c 10 www.google.com";
+        try {
+            Process processo = Runtime.getRuntime().exec(command);
+            BufferedReader retornoProcesso = new BufferedReader(readerFromInputStream(processo.getInputStream()));
+            String linha = retornoProcesso.readLine();
+            while (linha != null){
+                if (linha.contains("time=")){
+                    linhas.add(linha);
+                }
+                linha = retornoProcesso.readLine();
+//                System.out.println(linha);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        List<Double> velocidades = new ArrayList<>();
+        for (String linha: linhas) {
+            int posicaoInicial = linha.lastIndexOf("=");
+            int posicaoFinal = linha.lastIndexOf("m");
+            String velocidade = linha.substring(posicaoInicial+1, posicaoFinal);
+            velocidades.add(Double.parseDouble(velocidade.replace("\\s+", "")));
+        }
+        double total = 0;
+        for (Double velocidade: velocidades) {
+            total = total + velocidade;
+        }
+        double mediaVelocidade = total/velocidades.size();
+
+        return String.format("%.1f ms",mediaVelocidade);
+    }
 }
