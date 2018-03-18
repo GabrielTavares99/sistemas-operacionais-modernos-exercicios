@@ -9,14 +9,12 @@ import java.awt.event.MouseListener;
 
 public class TelaJogo extends JFrame {
 
-    public static boolean FIM_JOGO = false;
-
     public TelaJogo() {
 
         JFrame tela = this;
         tela.setLayout(null);
-        tela.setLocationRelativeTo(null);
         tela.setSize(500, 500);
+        tela.setLocationRelativeTo(null);
         tela.setTitle("Caça Níquel");
 
         JLabel lblTitulo = new JLabel("Jogo de Sorte Gabriel");
