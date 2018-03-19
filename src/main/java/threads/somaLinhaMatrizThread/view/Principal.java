@@ -15,15 +15,9 @@ public class Principal {
             }
         }
 
-        System.out.println("Thread 1\n");
-        ThreadCalculo threadCalculo = new ThreadCalculo(matriz);
-        threadCalculo.run();
-        System.out.println("Thread 2\n");
-        ThreadCalculo threadCalculo1 = new ThreadCalculo(matriz);
-        threadCalculo.run();
-        System.out.println("Thread 3\n");
-        ThreadCalculo threadCalculo2 = new ThreadCalculo(matriz);
-        threadCalculo.run();
+        new ThreadCalculo(matriz,1).run();
+        new ThreadCalculo(matriz, 2).run();
+        new ThreadCalculo(matriz,3 ).run();
 
         System.out.println();
         for (int i = 0; i < 3; i++) {

@@ -1,6 +1,6 @@
 package threads.corridaCarros.view;
 
-import threads.corridaCarros.ModeloCarro;
+import threads.corridaCarros.model.ModeloCarro;
 
 import javax.swing.*;
 import java.util.Random;
@@ -46,14 +46,14 @@ public class Carro extends JLabel implements Runnable {
     public void run() {
         while (getX() < DISTANCIA_MAXIMA) {
             try {
-                Thread.sleep(100);
+                Thread.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             int posicao = random.nextInt(VELOCIDADE_MAXIMA);
             this.setBounds(getX() + posicao, getY(), getWidth(), getHeight());
         }
-        System.out.println("Carro" + getId());
+        System.out.println("Carro" + modeloCarro.toString());
         if (txtVencedor.getText().isEmpty()){
             txtVencedor.setText(modeloCarro.toString());
         }else {

@@ -1,4 +1,4 @@
-package processos;
+package processos.exemploAula;
 
 public class Principal {
     public static void main(String[] args) {

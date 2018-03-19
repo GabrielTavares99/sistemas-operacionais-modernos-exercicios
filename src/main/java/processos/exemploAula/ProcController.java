@@ -1,4 +1,4 @@
-package processos;
+package processos.exemploAula;
 
 import javax.swing.*;
 import java.io.BufferedReader;

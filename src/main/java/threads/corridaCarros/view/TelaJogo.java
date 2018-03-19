@@ -1,6 +1,6 @@
 package threads.corridaCarros.view;
 
-import threads.corridaCarros.ModeloCarro;
+import threads.corridaCarros.model.ModeloCarro;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;
@@ -8,7 +8,7 @@ import java.awt.event.MouseListener;
 
 public class TelaJogo extends JFrame {
 
-    public static int VELOCIDADE_MAXIMA = 10;
+    public static int VELOCIDADE_MAXIMA = 5;
     public static int DISTANCIA_MAXIMA;
     public static int POSICAO = 1;
 

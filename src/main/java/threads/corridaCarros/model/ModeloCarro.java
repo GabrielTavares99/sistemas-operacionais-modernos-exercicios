@@ -1,4 +1,4 @@
-package threads.corridaCarros;
+package threads.corridaCarros.model;
 
 public enum ModeloCarro {
     VERDE,
