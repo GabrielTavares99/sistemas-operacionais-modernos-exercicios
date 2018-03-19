@@ -8,11 +8,13 @@ import java.util.Random;
 import static threads.corridaCarros.view.TelaJogo.DISTANCIA_MAXIMA;
 import static threads.corridaCarros.view.TelaJogo.VELOCIDADE_MAXIMA;
 
-public class Carro extends JLabel implements Runnable {
+public class Carro extends Thread {
 
+    private final JLabel carro;
     private final ModeloCarro modeloCarro;
     private final JTextField txtVencedor;
     private final JTextField txtPerdedor;
+    private JButton btnCorrer;
 
     public void setId(int id) {
         this.id = id;
@@ -20,22 +22,26 @@ public class Carro extends JLabel implements Runnable {
 
     private int id;
     private int posicao;
-    Thread thread;
+    public Thread thread;
+    int posicaoInicial;
 
-    public Carro(int x, int y, ModeloCarro modeloCarro, JTextField txtVencedor, JTextField txtPerdedor) {
+    public Carro(JLabel carro, int x, int y, ModeloCarro modeloCarro, JTextField txtVencedor, JTextField txtPerdedor, JButton btnCorrer) {
+        this.carro = carro;
         this.modeloCarro = modeloCarro;
         this.txtVencedor = txtVencedor;
         this.txtPerdedor = txtPerdedor;
-        this.setBounds(x, y, 65, 30);
-        this.setOpaque(true);
+        posicaoInicial = x;
+        this.btnCorrer = btnCorrer;
+        carro.setBounds(x, y, 65, 30);
+        carro.setOpaque(true);
         if (ModeloCarro.VERDE.equals(modeloCarro)) {
             ImageIcon image = new ImageIcon(System.getProperty("user.dir") + "/src/main/java/threads/corridaCarros/images/carro-verde.png");
-            image.setImage(image.getImage().getScaledInstance(getWidth(), getHeight(), 100));
-            this.setIcon(image);
+            image.setImage(image.getImage().getScaledInstance(carro.getWidth(), carro.getHeight(), 100));
+            carro.setIcon(image);
         } else {
             ImageIcon image = new ImageIcon(System.getProperty("user.dir") + "/src/main/java/threads/corridaCarros/images/carro-vermelho.png");
-            image.setImage(image.getImage().getScaledInstance(getWidth(), getHeight(), 100));
-            this.setIcon(image);
+            image.setImage(image.getImage().getScaledInstance(carro.getWidth(), carro.getHeight(), 100));
+            carro.setIcon(image);
         }
         thread = new Thread(this);
     }
@@ -44,24 +50,23 @@ public class Carro extends JLabel implements Runnable {
 
     @Override
     public void run() {
-        while (getX() < DISTANCIA_MAXIMA) {
+        while (carro.getX() < DISTANCIA_MAXIMA) {
             try {
-                Thread.sleep(10);
+                Thread.sleep(60);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             int posicao = random.nextInt(VELOCIDADE_MAXIMA);
-            this.setBounds(getX() + posicao, getY(), getWidth(), getHeight());
+            carro.setBounds(carro.getX() + posicao, carro.getY(), carro.getWidth(), carro.getHeight());
         }
         System.out.println("Carro" + modeloCarro.toString());
-        if (txtVencedor.getText().isEmpty()){
+        if (txtVencedor.getText().isEmpty()) {
             txtVencedor.setText(modeloCarro.toString());
-        }else {
+        } else {
             txtPerdedor.setText(modeloCarro.toString());
         }
+        btnCorrer.setVisible(true);
+        carro.setBounds(posicaoInicial, carro.getY(), carro.getWidth(), carro.getHeight());
     }
 
-    public int getId() {
-        return id;
-    }
 }
