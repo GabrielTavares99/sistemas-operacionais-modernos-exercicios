@@ -1,4 +1,4 @@
-package threads.corridaCarros.view;
+package threads.corridaCarros.controller;
 
 import threads.corridaCarros.model.ModeloCarro;
 
@@ -8,7 +8,8 @@ import java.util.Random;
 import static threads.corridaCarros.view.TelaJogo.DISTANCIA_MAXIMA;
 import static threads.corridaCarros.view.TelaJogo.VELOCIDADE_MAXIMA;
 
-public class Carro extends Thread {
+
+public class CarroController extends Thread {
 
     private final JLabel carro;
     private final ModeloCarro modeloCarro;
@@ -25,7 +26,7 @@ public class Carro extends Thread {
     public Thread thread;
     int posicaoInicial;
 
-    public Carro(JLabel carro, int x, int y, ModeloCarro modeloCarro, JTextField txtVencedor, JTextField txtPerdedor, JButton btnCorrer) {
+    public CarroController(JLabel carro, int x, int y, ModeloCarro modeloCarro, JTextField txtVencedor, JTextField txtPerdedor, JButton btnCorrer) {
         this.carro = carro;
         this.modeloCarro = modeloCarro;
         this.txtVencedor = txtVencedor;
@@ -52,14 +53,15 @@ public class Carro extends Thread {
     public void run() {
         while (carro.getX() < DISTANCIA_MAXIMA) {
             try {
-                Thread.sleep(60);
+                Thread.sleep(30);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            int posicao = random.nextInt(VELOCIDADE_MAXIMA);
+            int posicao = (random.nextInt(VELOCIDADE_MAXIMA)) / 30;
+            System.out.println(posicao);
             carro.setBounds(carro.getX() + posicao, carro.getY(), carro.getWidth(), carro.getHeight());
         }
-        System.out.println("Carro" + modeloCarro.toString());
+        System.out.println("CarroController" + modeloCarro.toString());
         if (txtVencedor.getText().isEmpty()) {
             txtVencedor.setText(modeloCarro.toString());
         } else {
