@@ -21,8 +21,9 @@ public class TelaSemaforo extends JFrame {
 
         lblVerde = new Carro(Cor.VERDE, Direcao.LESTE, 50, 300, 50, 50);
         lblAzul = new Carro(Cor.AZUL, Direcao.OESTE, 450, 350, 50, 50);
-        lblAmarelo = new Carro(Cor.AMARELO, Direcao.NORTE, 200, 500, 50, 50);
-        lblVermelho = new Carro(Cor.VERMELHO, Direcao.SUL, 200, 200, 50, 50);
+
+        lblVermelho = new Carro(Cor.VERMELHO, Direcao.SUL, 240, 250, 50, 50);
+        lblAmarelo = new Carro(Cor.AMARELO, Direcao.NORTE, 210, 500, 50, 50);
 
         add(lblVerde);
         add(lblAzul);
@@ -35,9 +36,9 @@ public class TelaSemaforo extends JFrame {
 //
         carros.add(new CarroController(semaforo, lblVerde));
         carros.add(new CarroController(semaforo, lblAzul));
-        carros.add(new CarroController(semaforo, lblAmarelo));
         carros.add(new CarroController(semaforo, lblVermelho));
-//
+        carros.add(new CarroController(semaforo, lblAmarelo));
+
         for (CarroController carro : carros) {
             carro.start();
         }

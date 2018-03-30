@@ -12,7 +12,7 @@ public class CarroController extends Thread {
     private Cor cor;
     private Direcao direcao;
     private Carro carro;
-    private int distanciaPercorrer = 500;
+    private int distanciaPercorrer = 250;
 
     public CarroController(Semaphore semaforo, Carro carro) {
         this.semaforo = semaforo;
@@ -38,34 +38,68 @@ public class CarroController extends Thread {
 
     public void atravessar() {
         System.out.println(String.format("Carro %s cruzando sentido %s", cor.toString(), direcao.toString()));
-        int distanciaPercorrida = carro.getX();
-        int distanciaFinal = carro.getX() + 400;
-        boolean comparacao = false;
-
+        int distInit = carro.getX();
+        int pInit = 0;
+        int pEnd = 0;
         boolean direcaoPositiva = direcao.equals(Direcao.LESTE) || direcao.equals(Direcao.SUL);
-        boolean mexeEixoX = direcao.equals(Direcao.LESTE) || direcao.equals(Direcao.OESTE);
 
-        while (distanciaPercorrida < distanciaFinal) {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        boolean mexeEixoY = direcao.equals(Direcao.NORTE) || direcao.equals(Direcao.SUL);
 
-            if (direcaoPositiva) {
-                distanciaPercorrida += 10;
-            } else {
-                distanciaPercorrida -= 10;
-            }
+        int step = 0;
+        if (direcaoPositiva)
+            step += 10;
+        else
+            step -= 10;
 
-            if (mexeEixoX)
-                carro.setLocation(distanciaPercorrida, carro.getY());
-            else
-                carro.setLocation(carro.getX(), distanciaFinal);
+        if (mexeEixoY && step > 0) {
+            pInit = carro.getY();
+            pEnd = carro.getY() + distanciaPercorrer;
+        } else if (mexeEixoY && step < 0) {
+            pInit = carro.getY();
+            pEnd = carro.getY() - distanciaPercorrer;
+        }
+
+        if (!mexeEixoY && step > 0) {
+            pInit = carro.getX();
+            pEnd = carro.getX() + distanciaPercorrer;
+        } else if (!mexeEixoY && step < 0) {
+            pInit = carro.getX();
+            pEnd = carro.getX() - distanciaPercorrer;
         }
 
 
+        if (step > 0) {
+            while (pInit < pEnd) {
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if (mexeEixoY)
+                    carro.setLocation(carro.getX(), pInit += step);
+                else
+                    carro.setLocation(pInit += step, carro.getY());
+            }
+        } else {
+            while (pInit > pEnd) {
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if (mexeEixoY)
+                    carro.setLocation(carro.getX(), pInit += step);
+                else
+                    carro.setLocation(pInit += step, carro.getY());
+            }
+        }
+
         System.out.println(String.format("Carro %s terminou de cruzar", cor.toString()));
     }
+
+    public void mexeEixo(int pInit, int pEnd, boolean eixoX, int step) {
+
+    }
+
 
 }
