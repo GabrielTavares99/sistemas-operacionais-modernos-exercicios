@@ -12,7 +12,7 @@ public class CarroController extends Thread {
     private Cor cor;
     private Direcao direcao;
     private Carro carro;
-    private int distanciaPercorrer = 250;
+    private int distanciaPercorrer = 400;
 
     public CarroController(Semaphore semaforo, Carro carro) {
         this.semaforo = semaforo;
@@ -38,7 +38,6 @@ public class CarroController extends Thread {
 
     public void atravessar() {
         System.out.println(String.format("Carro %s cruzando sentido %s", cor.toString(), direcao.toString()));
-        int distInit = carro.getX();
         int pInit = 0;
         int pEnd = 0;
         boolean direcaoPositiva = direcao.equals(Direcao.LESTE) || direcao.equals(Direcao.SUL);
@@ -69,7 +68,7 @@ public class CarroController extends Thread {
 
 
         if (step > 0) {
-            while (pInit < pEnd) {
+            while (pInit <= pEnd) {
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException e) {
@@ -81,7 +80,7 @@ public class CarroController extends Thread {
                     carro.setLocation(pInit += step, carro.getY());
             }
         } else {
-            while (pInit > pEnd) {
+            while (pInit >= pEnd) {
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException e) {

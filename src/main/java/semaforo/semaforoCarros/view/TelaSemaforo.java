@@ -16,14 +16,14 @@ public class TelaSemaforo extends JFrame {
     public TelaSemaforo() {
         setLayout(null);
         setLocationRelativeTo(null);
-        setSize(800, 600);
+        setSize(600, 600);
         setTitle("Semáforo de carros");
 
-        lblVerde = new Carro(Cor.VERDE, Direcao.LESTE, 50, 300, 50, 50);
-        lblAzul = new Carro(Cor.AZUL, Direcao.OESTE, 450, 350, 50, 50);
+        lblVerde = new Carro(Cor.VERDE, Direcao.LESTE, 50, 275, 50, 50);
+        lblAzul = new Carro(Cor.AZUL, Direcao.OESTE, this.getWidth()-100, 325, 50, 50);
 
-        lblVermelho = new Carro(Cor.VERMELHO, Direcao.SUL, 240, 250, 50, 50);
-        lblAmarelo = new Carro(Cor.AMARELO, Direcao.NORTE, 210, 500, 50, 50);
+        lblVermelho = new Carro(Cor.VERMELHO, Direcao.SUL, (this.getWidth()/2)-70, 50, 50, 50);
+        lblAmarelo = new Carro(Cor.AMARELO, Direcao.NORTE, (this.getWidth()/2), 500, 50, 50);
 
         add(lblVerde);
         add(lblAzul);
