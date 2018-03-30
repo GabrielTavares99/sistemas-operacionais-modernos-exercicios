@@ -1,13 +1,6 @@
-package semaforo.docs.semaforoCarros;
+package semaforo.semaforoCarros;
 
-import semaforo.docs.semaforoCarros.controller.CarroController;
-import semaforo.docs.semaforoCarros.model.Cor;
-import semaforo.docs.semaforoCarros.model.Direcao;
-import semaforo.docs.semaforoCarros.view.TelaSemaforo;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.Semaphore;
+import semaforo.semaforoCarros.view.TelaSemaforo;
 
 public class Principal {
     public static void main(String[] args) {

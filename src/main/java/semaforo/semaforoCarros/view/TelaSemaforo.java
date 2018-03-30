@@ -1,8 +1,8 @@
-package semaforo.docs.semaforoCarros.view;
+package semaforo.semaforoCarros.view;
 
-import semaforo.docs.semaforoCarros.controller.CarroController;
-import semaforo.docs.semaforoCarros.model.Cor;
-import semaforo.docs.semaforoCarros.model.Direcao;
+import semaforo.semaforoCarros.controller.CarroController;
+import semaforo.semaforoCarros.model.Cor;
+import semaforo.semaforoCarros.model.Direcao;
 
 import javax.swing.*;
 import java.util.ArrayList;

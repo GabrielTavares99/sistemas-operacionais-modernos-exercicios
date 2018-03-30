@@ -1,4 +1,4 @@
-package semaforo.docs.semaforoCarros.model;
+package semaforo.semaforoCarros.model;
 
 public enum  Direcao {
     NORTE,

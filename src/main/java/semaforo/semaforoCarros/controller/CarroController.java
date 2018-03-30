@@ -1,8 +1,8 @@
-package semaforo.docs.semaforoCarros.controller;
+package semaforo.semaforoCarros.controller;
 
-import semaforo.docs.semaforoCarros.model.Cor;
-import semaforo.docs.semaforoCarros.model.Direcao;
-import semaforo.docs.semaforoCarros.view.Carro;
+import semaforo.semaforoCarros.model.Cor;
+import semaforo.semaforoCarros.model.Direcao;
+import semaforo.semaforoCarros.view.Carro;
 
 import java.util.concurrent.Semaphore;
 
