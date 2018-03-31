@@ -14,6 +14,8 @@ public class Principal {
 
         List<TipoTransacao> tiposTransacao = new ArrayList<>();
         Random random = new Random();
+        Semaphore semaphoreSaque = new Semaphore(1);
+        Semaphore semaphoreDeposito = new Semaphore(1);
         tiposTransacao.add(TipoTransacao.DEPOSITO);
         tiposTransacao.add(TipoTransacao.SAQUE);
 
@@ -25,10 +27,9 @@ public class Principal {
 
         List<String> codigosConta = new ArrayList<>();
         codigosConta.addAll(CONTAS.keySet());
-        Semaphore semaphore = new Semaphore(2);
         for (int i = 1; i <= 20; i++) {
             TipoTransacao tipoTransacao = tiposTransacao.get(random.nextInt(tiposTransacao.size()));
-            new Transacao(i, semaphore, codigosConta.get(random.nextInt(codigosConta.size())).toString(), tipoTransacao, random.nextDouble() * 100).start();
+            new Transacao(i, semaphoreSaque, semaphoreDeposito, codigosConta.get(random.nextInt(codigosConta.size())), tipoTransacao, random.nextDouble() * 100).start();
         }
 
     }
