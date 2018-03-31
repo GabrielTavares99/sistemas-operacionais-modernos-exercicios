@@ -12,8 +12,8 @@ public class Transacao extends Thread {
     private final String codConta;
     private TipoTransacao tipoTransacao;
     private final Double valorTransacao;
-    boolean saque;
-    boolean deposito;
+    static int saque;
+    static int deposito;
 
     static Map<String, Double> CONTAS = new HashMap<>();
 
@@ -35,18 +35,23 @@ public class Transacao extends Thread {
 
         try {
 
-            // TODO: 30/03/18 COMO NÃO PERMITIR DUAS OPERAÇÕES AO MESMO TEMPO? 
-            semaphore.acquire();
+            // TODO: 30/03/18 COMO NÃO PERMITIR DUAS OPERAÇÕES AO MESMO TEMPO?
 
-            System.out.println(transacoes += " " + tipoTransacao.toString());
-            if (tipoTransacao.equals(TipoTransacao.DEPOSITO))
-                deposito = true;
-            else
-                saque = true;
+            semaphore.acquire();
 
             saldoConta = CONTAS.get(codConta);
             System.out.println(String.format("Transação #%d de %s na conta %s, saldo %.2f, valor transação %.2f INICIANDO OPERAÇÃO",
                     transacao_id, tipoTransacao.toString(), codConta, saldoConta, valorTransacao));
+
+            if (tipoTransacao.equals(TipoTransacao.DEPOSITO)) {
+                deposito++;
+            } else {
+                saque++;
+            }
+
+            System.out.println("SAQUE " + saque);
+            System.out.println("DEPOSITO  " + deposito);
+
             if (tipoTransacao.equals(TipoTransacao.DEPOSITO)) {
                 deposito(codConta, saldoConta, valorTransacao);
             } else {
@@ -59,9 +64,9 @@ public class Transacao extends Thread {
             System.out.println(String.format("Transação #%d de %s na conta %s, saldo %.2f  CONCLUÍDA",
                     transacao_id, tipoTransacao.toString(), codConta, saldoConta));
             if (tipoTransacao.equals(TipoTransacao.DEPOSITO))
-                deposito = false;
+                deposito--;
             else
-                saque = false;
+                saque--;
             semaphore.release();
         }
 
